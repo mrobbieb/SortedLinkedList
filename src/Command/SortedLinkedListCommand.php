@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use SortedLinkedList\LinkedList;
+use SortedLinkedList\Enum\Sort;
 use Exception;
 
 #[AsCommand(name: 'app:sorted-linked-list-old', description: 'Interactively edit a sorted linked list.')]
@@ -114,6 +115,22 @@ class SortedLinkedListCommand extends Command
                 $this->printList($io, $list);
                 continue;
             }
+
+            // order
+            if (preg_match('/^order\s+(.+)$/i', $cmd, $m)) {
+                $order = trim($m[1]);
+                if (!in_array($order, ['ASC', 'DESC'])) {
+                    $io->warning('Order must be either "ASC" or "DESC"');
+                }
+
+                $order = ($order === 'ASC') ? Sort::ASC : Sort::DESC;
+                $listArray = $list->toArray();
+                $list = LinkedList::new($order)->fromArray($listArray);
+
+                $this->printList($io, $list);
+                continue;
+            }
+
             $io->warning('Unrecognized command. Type "help" to see options.');
         }
     }
@@ -126,6 +143,7 @@ class SortedLinkedListCommand extends Command
             'remove <value>        - Remove a value (if present)',
             'set a,b,c             - Overwrite the list (sorted)',
             'show                  - Display the current list',
+            'order                 - Order the list ("DESC" or "ASC)',
             'help                  - help',
             'exit                  - exit',
         ]);
