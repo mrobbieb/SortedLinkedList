@@ -1,0 +1,18 @@
+repos:
+  - repo: local
+    hooks:
+
+      - id: phpstan
+        name: PHPStan
+        entry: vendor/bin/phpstan analyse
+        language: system
+        types: [php]
+        args: [--memory-limit=256M, --level=5, --no-progress]
+
+      - id: phpcs
+        name: PHP CodeSniffer
+        entry: vendor/bin/phpcs
+        language: system
+        files: \.php$
+        args: ["--standard=phpcs.xml"]
+        types: [php]
