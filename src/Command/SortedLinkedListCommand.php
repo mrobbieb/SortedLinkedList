@@ -2,13 +2,13 @@
 
 namespace App\Command;
 
-use Predis\Command\Redis\SDIFF;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use SortedLinkedList\LinkedList;
+use Exception;
 
 #[AsCommand(name: 'app:sorted-linked-list-old', description: 'Interactively edit a sorted linked list.')]
 class SortedLinkedListCommand extends Command
@@ -71,13 +71,9 @@ class SortedLinkedListCommand extends Command
                 try {
                     $list->add($value);
                     $io->success(sprintf('Added "%s" (sorted).', $value));
-                } catch(\Excep
-                tion $e) {
-                    $idsfsdf
-                    SDIFF
-                    
-                    sdf->error($e->getMessage() . ':' . $value);
-                } 
+                } catch (Exception $e) {
+                    $io->error($e->getMessage() . ":" . $value);
+                }
 
                 $this->printList($io, $list);
                 continue;
@@ -105,13 +101,13 @@ class SortedLinkedListCommand extends Command
                 $csv = trim($m[1]);
                 $items = array_filter(array_map('trim', explode(',', $csv)), static fn($v) => $v !== '');
 
-                foreach($items as $value) {
+                foreach ($items as $value) {
                     $value = is_numeric($value) ? intval($value) : $value;
                     try {
                         $list->add($value);
-                    } catch(\Exception $e) {
+                    } catch (Exception $e) {
                         $io->error($e->getMessage() . ':' . $value);
-                    } 
+                    }
                 }
 
                 $io->success('List overwritten (sorted).');
