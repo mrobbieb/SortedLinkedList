@@ -71,7 +71,8 @@ class SortedLinkedListCommand extends Command
                 try {
                     $list->add($value);
                     $io->success(sprintf('Added "%s" (sorted).', $value));
-                } catch(\Exception $e) {
+                } catch(\Excep
+                tion $e) {
                     $idsfsdf
                     SDIFF
                     
