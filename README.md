@@ -162,9 +162,15 @@ SortedLinkedList/
 
 ---
 
+## Pre-Commit Hook
+    PHPStan and PHPCS will run with precommit hook
+    See `.pre-commit-config.yaml`
+---
+
 ## Libraries
     - https://github.com/JethroT83/SortedLinkedList
-    
+
+---
 
 ## API 
 I started using an API with sqLite but abanonded the idea. But you can get a general idea of what i was building...
