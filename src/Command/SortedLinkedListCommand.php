@@ -11,7 +11,7 @@ use SortedLinkedList\LinkedList;
 use SortedLinkedList\Enum\Sort;
 use Exception;
 
-#[AsCommand(name: 'app:sorted-linked-list-old', description: 'Interactively edit a sorted linked list.')]
+#[AsCommand(name: 'app:sorted-linked-list', description: 'Interactively edit a sorted linked list.')]
 class SortedLinkedListCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -30,7 +30,7 @@ class SortedLinkedListCommand extends Command
         $this->printList($io, $list);
 
         while (true) {
-            $line = $io->ask('Enter a command - add/remove/set/show/help/exit');
+            $line = $io->ask('Enter a command - add/remove/set/show/order/help/exit');
 
             if ($line === null) {
                 $this->printHelp($io);
