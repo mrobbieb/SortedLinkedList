@@ -7,7 +7,7 @@ repos:
         entry: vendor/bin/phpstan analyse
         language: system
         types: [php]
-        args: [--memory-limit=256M, --level=5, --no-progress]
+        args: [--memory-limit=-1, --level=5, --no-progress]
 
       - id: phpcs
         name: PHP CodeSniffer
