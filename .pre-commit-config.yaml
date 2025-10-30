@@ -14,5 +14,5 @@ repos:
         entry: vendor/bin/phpcs
         language: system
         files: \.php$
-        args: ["--standard=PSR12"]
+        args: ["--standard=PSR12", "--ignore=*/migrations/"]
         types: [php]

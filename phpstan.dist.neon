@@ -1,0 +1,9 @@
+parameters:
+    level: 5
+    paths:
+        - config/
+        - public/
+        - src/
+    excludePaths:
+        - tests/
+        - bin/
