@@ -3,10 +3,16 @@ framework:
     secret: '%env(APP_SECRET)%'
 
     # Note that the session will be started ONLY if you read or write from it.
-    session: true
+    session:
+        handler_id: Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler
 
     #esi: true
     #fragments: true
+    cache:
+        pools:
+            app:
+                adapter: cache.adapter.redis
+                provider: '%env(REDIS_DSN)%'
 
 when@test:
     framework:

@@ -1,19 +1,36 @@
+# framework:
+#     cache:
+#         default_redis_provider: 'redis://localhost' # Or use an environment variable like '%env(resolve:REDIS_URL)%'
+#         pools:
+#             doctrine.result_cache_pool:
+#                 adapter: cache.adapter.redis
+#                 provider: default_redis_provider
+#             doctrine.query_cache_pool:
+#                 adapter: cache.adapter.redis
+#                 provider: default_redis_provider
+
 framework:
-    cache:
-        # Unique name of your app: used to compute stable namespaces for cache keys.
-        #prefix_seed: your_vendor_name/app_name
+  cache:
+    default_redis_provider: '%env(REDIS_URL)%'  # e.g. REDIS_URL=redis://127.0.0.1:6379
+    pools:
+      doctrine.result_cache_pool:
+        adapter: cache.adapter.redis
+      doctrine.query_cache_pool:
+        adapter: cache.adapter.redis
+        
+# framework:
+#     cache:
+#         pools:
+#             doctrine.result_cache_pool:
+#                 adapter: cache.adapter.redis
+#                 provider: default_redis_provider
+#             doctrine.query_cache_pool:
+#                 adapter: cache.adapter.redis
+#                 provider: default_redis_provider
 
-        # The "app" cache stores to the filesystem by default.
-        # The data in this cache should persist between deploys.
-        # Other options include:
-
-        # Redis
-        #app: cache.adapter.redis
-        #default_redis_provider: redis://localhost
-
-        # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
-        #app: cache.adapter.apcu
-
-        # Namespaced pools use the above "app" backend by default
-        #pools:
-            #my.dedicated.cache: null
+# framework:
+#     cache:
+#         pools:
+#             cache.my_redis_pool:
+#                 adapter: cache.adapter.redis
+#                 provider: 'redis://localhost:6379'

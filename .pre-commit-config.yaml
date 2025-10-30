@@ -14,5 +14,5 @@ repos:
         entry: vendor/bin/phpcs
         language: system
         files: \.php$
-        args: ["--standard=phpcs.xml"]
+        args: ["--standard=PSR12"]
         types: [php]

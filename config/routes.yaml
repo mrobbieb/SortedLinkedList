@@ -3,3 +3,31 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+# sll:
+#     path: /sll
+#     controller: App\Controller\SLLController::list
+sll_show:
+    path:       api/sll
+    controller: App\Controller\SortedLinkedListApiController::show
+    methods:    GET|HEAD
+
+sll_post:
+    path:       api/sll
+    controller: App\Controller\SortedLinkedListApiController::create
+    methods:    POST
+
+sll_get:
+    path:       api/sll/get
+    controller: App\Controller\SortedLinkedListApiController::get
+    methods:    GET
+
+sll_add:
+    path:       api/sll/add
+    controller: App\Controller\SortedLinkedListApiController::add
+    methods:    POST
+
+sll_remove:
+    path:       api/sll/remove
+    controller: App\Controller\SortedLinkedListApiController::remove
+    methods:    POST

@@ -9,8 +9,19 @@ services:
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
-        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true # Automatically registersP your services as commands, event subscribers, etc.
 
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\PdoSessionHandler:
+        arguments:
+            - 'sqlite:///%kernel.project_dir%/var/app.db'
+
+    # default_redis_provider:
+    #     class: Redis # Or Predis\Client, depending on your library
+    #         # Configure your Redis connection details here
+    #         # For example, using a DSN from environment variables:
+    #     arguments: ['redis://localhost:6379']
+            # Or directly:
+            # arguments: ['redis://localhost:6379']
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
